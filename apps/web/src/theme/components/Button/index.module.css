@@ -2,3 +2,15 @@
   font-weight: 500;
   font-size: 14px;
 }
+
+.root {
+  background-color: #2B77EB;
+
+  &:hover { 
+    background-color: #5692EF;
+  }
+
+  &:active {
+    background-color: #235FBC;
+  }
+}
