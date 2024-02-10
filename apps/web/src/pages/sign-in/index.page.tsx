@@ -8,14 +8,12 @@ import { IconAlertCircle } from '@tabler/icons-react';
 
 import { accountApi } from 'resources/account';
 
-import config from 'config';
 import { handleError } from 'utils';
 import { RoutePath } from 'routes';
 import { Link } from 'components';
 
 import { EMAIL_REGEX } from 'app-constants';
-
-import { GoogleIcon } from 'public/icons';
+import classes from './index.module.css';
 
 const schema = z.object({
   email: z.string().regex(EMAIL_REGEX, 'Email format is incorrect.'),
@@ -40,76 +38,52 @@ const SignIn: NextPage = () => {
       <Head>
         <title>Sign in</title>
       </Head>
-      <Stack w={408} gap={20}>
-        <Stack gap={34}>
-          <Title order={1}>Sign In</Title>
+      <Stack w={408} gap={32}>
+        <Title order={1} className={classes.title}>Sign In</Title>
 
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Stack gap={20}>
-              <TextInput
-                {...register('email')}
-                label="Email Address"
-                placeholder="Email Address"
-                error={errors.email?.message}
-              />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Stack gap={20}>
+            <TextInput
+              {...register('email')}
+              label="Email Address"
+              placeholder="Email Address"
+              error={errors.email?.message}
+            />
 
-              <PasswordInput
-                {...register('password')}
-                label="Password"
-                placeholder="Enter password"
-                error={errors.password?.message}
-              />
+            <PasswordInput
+              {...register('password')}
+              label="Password"
+              placeholder="Enter password"
+              error={errors.password?.message}
+            />
 
-              {errors!.credentials && (
-                <Alert icon={<IconAlertCircle size={16} />} color="red">
-                  {errors.credentials.message}
-                </Alert>
-              )}
+            {errors!.credentials && (
+            <Alert icon={<IconAlertCircle size={16} />} color="red">
+              {errors.credentials.message}
+            </Alert>
+            )}
+          </Stack>
 
-              <Link
-                href={RoutePath.ForgotPassword}
-                type="router"
-                underline={false}
-                size="md"
-                align="center"
-              >
-                Forgot password?
-              </Link>
-            </Stack>
-
-            <Button
-              loading={isSignInLoading}
-              type="submit"
-              fullWidth
-              mt={34}
-            >
-              Sign in
-            </Button>
-          </form>
-        </Stack>
-
-        <Stack gap={34}>
           <Button
-            component="a"
-            leftSection={<GoogleIcon />}
-            href={`${config.API_URL}/account/sign-in/google/auth`}
-            variant="outline"
+            loading={isSignInLoading}
+            type="submit"
+            fullWidth
+            mt={34}
           >
-            Continue with Google
+            Sign in
           </Button>
-
-          <Group fz={16} justify="center" gap={12}>
-            Don’t have an account?
-            <Link
-              type="router"
-              href={RoutePath.SignUp}
-              underline={false}
-              inherit
-            >
-              Sign up
-            </Link>
-          </Group>
-        </Stack>
+        </form>
+        <Group fz={16} justify="center" gap={12}>
+          Don’t have an account?
+          <Link
+            type="router"
+            href={RoutePath.SignUp}
+            underline={false}
+            inherit
+          >
+            Sign up
+          </Link>
+        </Group>
       </Stack>
     </>
   );

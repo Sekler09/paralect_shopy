@@ -3,10 +3,10 @@ import { createTheme } from '@mantine/core';
 import * as components from './components';
 
 const mainTheme = createTheme({
-  fontFamily: 'Roboto, sans-serif',
+  fontFamily: 'Inter, sans-serif',
   fontFamilyMonospace: 'monospace',
   headings: {
-    fontFamily: 'Roboto, sans-serif',
+    fontFamily: 'Inter, sans-serif',
     fontWeight: '600',
   },
   lineHeights: {
@@ -14,6 +14,22 @@ const mainTheme = createTheme({
   },
   primaryColor: 'blue',
   primaryShade: 6,
+  black: '#201F22',
+  colors: {
+    black: [
+      '#201F22',
+      '#201F22',
+      '#201F22',
+      '#201F22',
+      '#201F22',
+      '#201F22',
+      '#201F22',
+      '#201F22',
+      '#201F22',
+      '#201F22',
+      '#201F22',
+    ],
+  },
   components,
 });
 

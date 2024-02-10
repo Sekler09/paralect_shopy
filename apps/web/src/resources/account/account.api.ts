@@ -29,11 +29,11 @@ export function useSignOut() {
 export function useSignUp<T>() {
   const signUp = (data: T) => apiService.post('/account/sign-up', data);
 
-  interface SignUpResponse {
-    signupToken: string;
-  }
-
-  return useMutation<SignUpResponse, unknown, T>(signUp);
+  return useMutation<User, unknown, T>(signUp, {
+    onSuccess: (data) => {
+      queryClient.setQueryData(['account'], data);
+    },
+  });
 }
 
 export function useForgotPassword<T>() {

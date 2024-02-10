@@ -11,7 +11,7 @@ import { securityUtil } from 'utils';
 
 const schema = z.object({
   email: z.string().regex(EMAIL_REGEX, 'Email format is incorrect.'),
-  password: z.string().regex(PASSWORD_REGEX, 'The password must contain 6 or more characters with at least one letter (a-z) and one number (0-9).'),
+  password: z.string().regex(PASSWORD_REGEX, 'The password must contain 8 or more characters with at least one lowercase letter (a-z) and at least one capital letter (A-Z) and one number (0-9).'),
 });
 
 interface ValidatedData extends z.infer<typeof schema> {
@@ -31,10 +31,6 @@ async function validator(ctx: AppKoaContext<ValidatedData>, next: Next) {
 
   ctx.assertClientError(isPasswordMatch, {
     credentials: 'The email or password you have entered is invalid',
-  });
-
-  ctx.assertClientError(user.isEmailVerified, {
-    email: 'Please verify your email to sign in',
   });
 
   ctx.validatedData.user = user;
