@@ -1,26 +1,30 @@
 import { memo, FC } from 'react';
-import { AppShellHeader as LayoutHeader, Container } from '@mantine/core';
+import { AppShellHeader as LayoutHeader, Container, Box } from '@mantine/core';
 
 import { accountApi } from 'resources/account';
 
-import { Link } from 'components';
 import { RoutePath } from 'routes';
 
-import { LogoImage } from 'public/images';
-
+import Logo from 'components/Logo';
+import { useRouter } from 'next/router';
 import UserMenu from './components/UserMenu';
-import ShadowLoginBanner from './components/ShadowLoginBanner';
 
 import classes from './index.module.css';
+import Nav from './components/Nav';
+
+const links = [
+  { title: 'Marketplace', href: RoutePath.Home },
+  { title: 'Your Products', href: RoutePath.Profile },
+];
 
 const Header: FC = () => {
+  const router = useRouter();
   const { data: account } = accountApi.useGet();
 
   if (!account) return null;
 
   return (
     <LayoutHeader>
-      {account.isShadow && <ShadowLoginBanner email={account.email} />}
       <Container
         className={classes.header}
         mih={72}
@@ -29,9 +33,10 @@ const Header: FC = () => {
         display="flex"
         fluid
       >
-        <Link type="router" href={RoutePath.Home}>
-          <LogoImage />
-        </Link>
+        <Box onClick={() => router.push(RoutePath.Home)} style={{ cursor: 'pointer' }}>
+          <Logo />
+        </Box>
+        <Nav links={links} />
         <UserMenu />
       </Container>
     </LayoutHeader>

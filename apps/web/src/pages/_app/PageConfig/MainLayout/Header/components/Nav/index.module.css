@@ -1,0 +1,28 @@
+.link {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0;
+  border: none;
+  border-radius: 20px;
+  width: 139px;
+  color: #A3A3A3;
+  cursor: pointer;
+  background: transparent;
+
+  &:hover{
+    background-color: transparent;
+  }
+
+  &:active{
+    color: #201F22;
+  }
+}
+
+.activeLink {
+  color: #201F22;
+  background-color: #ECECEE;
+
+  &:hover{
+    background-color: #ECECEE;
+  }
+}
