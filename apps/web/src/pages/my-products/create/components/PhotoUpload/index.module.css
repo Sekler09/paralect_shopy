@@ -1,0 +1,22 @@
+.photoImg {
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.uploadBtn {
+  border: 1px solid #CFCFCF;
+  background: transparent;
+  color: #767676;
+
+  &:hover {
+    border-color: #2B77EB;
+    color: #2B77EB;
+    background: transparent;
+  }
+
+  &:active {
+    border-color: #235FBC;
+    color: #235FBC;
+    background: transparent;
+  }
+}

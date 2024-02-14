@@ -20,9 +20,10 @@ const Nav: FC<NavProps> = ({ links }) => {
     <Group gap={32}>
       {links.map(({ title, href }) => (
         <Button
+          key={title + href}
           onClick={() => handleNavigate(href)}
           className={clsx(classes.link, {
-            [classes.activeLink]: router.pathname === href,
+            [classes.activeLink]: router.pathname.split('/')[1] === href.slice(1),
           })}
         >
           {title}

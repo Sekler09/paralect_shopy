@@ -14,7 +14,7 @@ import Nav from './components/Nav';
 
 const links = [
   { title: 'Marketplace', href: RoutePath.Home },
-  { title: 'Your Products', href: RoutePath.Profile },
+  { title: 'Your Products', href: RoutePath.MyProducts },
 ];
 
 const Header: FC = () => {

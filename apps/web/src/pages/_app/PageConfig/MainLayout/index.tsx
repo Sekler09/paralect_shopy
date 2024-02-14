@@ -2,7 +2,6 @@ import { FC, ReactElement } from 'react';
 import { AppShell } from '@mantine/core';
 
 import Header from './Header';
-
 import classes from './MainLayout.module.css';
 
 interface MainLayoutProps {
