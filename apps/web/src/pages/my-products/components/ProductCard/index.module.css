@@ -1,0 +1,22 @@
+.card {
+  position: relative;
+  border-color: #ECECEE;
+  border-radius: 12px;
+  padding: 16px;
+  width: 271px;
+  height: 266px;
+}
+
+.deleteBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  background: #fff;
+  cursor: pointer;
+}

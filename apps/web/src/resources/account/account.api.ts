@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from 'react-query';
 
-import { User } from 'types';
+import { Product, User } from 'types';
 
 import { apiService } from 'services';
 
@@ -84,4 +84,14 @@ export function useRemoveAvatar() {
       queryClient.setQueryData(['account'], data);
     },
   });
+}
+
+export function useGetUserProducts() {
+  const getProducts = () => apiService.get('/account/products');
+  interface ProductsListResponse {
+    count: number;
+    items: Product[];
+  }
+
+  return useQuery<ProductsListResponse>(['user-products'], getProducts);
 }

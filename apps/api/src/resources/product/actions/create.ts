@@ -8,7 +8,7 @@ import { validateMiddleware } from 'middlewares';
 
 const schema = z.object({
   title: z.string().min(3, 'Title is too short').max(20, 'Title is too long'),
-  imgUrl: z.string().optional().nullable(),
+  imgUrl: z.string(),
   price: z.number().min(1, 'Price can not be negative or zero').max(10000000, 'This is so much'),
 });
 
