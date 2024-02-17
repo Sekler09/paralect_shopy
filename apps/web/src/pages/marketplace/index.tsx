@@ -18,6 +18,7 @@ import { IconArrowsSort, IconSearch, IconX } from '@tabler/icons-react';
 
 import { productApi } from 'resources/product';
 import { ArrowDown } from 'public/icons';
+import { accountApi } from 'resources/account';
 import ProductCard from './components/ProductCard';
 import { PER_PAGE, selectOptions } from './constants';
 
@@ -95,6 +96,7 @@ const Marketplace: NextPage = () => {
   }, [debouncedFrom, debouncedTo]);
 
   const { data } = productApi.useList(params);
+  const { data: account } = accountApi.useGet();
 
   return (
     <>
@@ -197,8 +199,14 @@ const Marketplace: NextPage = () => {
             </Group>
 
             {data?.items.length ? (
-              <Group>
-                {data.items.map((product) => <ProductCard product={product} key={product._id} />)}
+              <Group gap={20}>
+                {data.items.map((product) => (
+                  <ProductCard
+                    product={product}
+                    isInCart={!!account?.cart.find((item) => item.product._id === product._id)}
+                    key={product._id}
+                  />
+                ))}
               </Group>
             ) : (
               <Container p={75}>

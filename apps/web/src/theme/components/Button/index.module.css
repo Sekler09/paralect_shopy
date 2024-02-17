@@ -13,4 +13,9 @@
   &:active {
     background-color: #235FBC;
   }
+
+  &:disabled {
+    background-color: #72A5F4;
+    color: #ffffff;
+  }
 }

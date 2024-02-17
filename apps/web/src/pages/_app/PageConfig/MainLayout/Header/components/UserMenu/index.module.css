@@ -5,6 +5,12 @@
   cursor: pointer;
 }
 
+.activeCart {
+  path, circle {
+    fill: #2B77EB;
+  }
+}
+
 .cartSize {
   position: absolute;
   top: -5px;
@@ -18,3 +24,4 @@
   color: #fff;
   font-size: 14px;
 }
+

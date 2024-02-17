@@ -95,3 +95,29 @@ export function useGetUserProducts() {
 
   return useQuery<ProductsListResponse>(['user-products'], getProducts);
 }
+
+export function useUpdateProductInCart() {
+  interface ReqBody {
+    productId: string;
+    quantity: number;
+  }
+
+  const updateProduct = (data: ReqBody) => apiService.post('/account/cart', data);
+
+  return useMutation<User, unknown, ReqBody>(updateProduct, {
+    onSuccess: (data) => {
+      queryClient.setQueryData(['account'], data);
+      queryClient.invalidateQueries(['products']);
+    },
+  });
+}
+
+export function useRemoveProductFromCart() {
+  const removeProduct = (productId: string) => apiService.delete(`/account/cart/${productId}`);
+
+  return useMutation<User, unknown, string>(removeProduct, {
+    onSuccess: (data) => {
+      queryClient.setQueryData(['account'], data);
+    },
+  });
+}

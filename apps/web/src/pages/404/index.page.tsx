@@ -8,7 +8,7 @@ import { RoutePath } from 'routes';
 
 const NotFound: NextPage = () => {
   const handleClick = useCallback(() => {
-    router.push(RoutePath.Home);
+    router.push(RoutePath.Marketplace);
   }, []);
 
   return (

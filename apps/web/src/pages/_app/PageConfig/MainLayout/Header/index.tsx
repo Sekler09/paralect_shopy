@@ -13,7 +13,7 @@ import classes from './index.module.css';
 import Nav from './components/Nav';
 
 const links = [
-  { title: 'Marketplace', href: RoutePath.Home },
+  { title: 'Marketplace', href: RoutePath.Marketplace },
   { title: 'Your Products', href: RoutePath.MyProducts },
 ];
 
@@ -33,7 +33,7 @@ const Header: FC = () => {
         display="flex"
         fluid
       >
-        <Box onClick={() => router.push(RoutePath.Home)} style={{ cursor: 'pointer' }}>
+        <Box onClick={() => router.push(RoutePath.Marketplace)} style={{ cursor: 'pointer' }}>
           <Logo />
         </Box>
         <Nav links={links} />

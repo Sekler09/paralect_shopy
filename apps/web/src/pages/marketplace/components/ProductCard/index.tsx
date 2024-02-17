@@ -3,14 +3,17 @@ import { Button, Card, Group, Image, Stack, Text } from '@mantine/core';
 
 import { productApi } from 'resources/product';
 import { Product } from 'types';
+import { accountApi } from 'resources/account';
 import classes from './index.module.css';
 
 interface ProductCardProps {
-  product: Product
+  product: Product;
+  isInCart: boolean;
 }
 
-const ProductCard: FC<ProductCardProps> = ({ product }) => {
+const ProductCard: FC<ProductCardProps> = ({ product, isInCart }) => {
   const { isLoading } = productApi.useRemove();
+  const { mutate: addProductToCart } = accountApi.useUpdateProductInCart();
 
   return (
     <Card withBorder className={classes.card}>
@@ -33,7 +36,17 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
         </Group>
       </Stack>
 
-      <Button mt={20} loading={isLoading}>Add to Cart</Button>
+      {!isInCart
+        ? (
+          <Button
+            mt={20}
+            loading={isLoading}
+            onClick={() => addProductToCart({ productId: product._id, quantity: 1 })}
+          >
+            Add to Cart
+          </Button>
+        )
+        : <Button mt={20} disabled>In Cart</Button>}
     </Card>
   );
 };
