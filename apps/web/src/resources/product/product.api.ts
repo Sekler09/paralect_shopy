@@ -1,5 +1,5 @@
 import queryClient from 'query-client';
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 
 import { apiService } from 'services';
 import { Product } from 'types';
@@ -27,4 +27,16 @@ export function useRemove() {
   return useMutation(remove, {
     onSuccess: () => queryClient.invalidateQueries('user-products'),
   });
+}
+
+export function useList<T>(params: T) {
+  const list = () => apiService.get('/products', params);
+
+  interface ProductListResponse {
+    count: number;
+    items: Product[];
+    totalPages: number;
+  }
+
+  return useQuery<ProductListResponse>(['products', params], list);
 }

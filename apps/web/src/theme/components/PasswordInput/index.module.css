@@ -10,6 +10,8 @@
   border-radius: 8px;
   height: 40px;
   min-height: 40px;
+  border-color: #ECECEE;
+
 
   &:hover {
     border-color: #2B77EB;

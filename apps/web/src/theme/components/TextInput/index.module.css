@@ -4,6 +4,8 @@
   min-height: 40px;
   height: 40px;
 
+  border-color: #ECECEE;
+
   &::placeholder,
   &:disabled,
   &:disabled::placeholder {
