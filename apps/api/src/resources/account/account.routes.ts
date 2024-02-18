@@ -17,6 +17,7 @@ import google from './actions/google';
 import getProducts from './actions/get-products';
 import updateProductCart from './actions/update-product-cart';
 import removeProductCart from './actions/remove-product-cart';
+import proceedCheckout from './actions/proceed-checkout';
 
 const publicRoutes = routeUtil.getRoutes([
   signUp,
@@ -38,6 +39,7 @@ const privateRoutes = routeUtil.getRoutes([
   getProducts,
   updateProductCart,
   removeProductCart,
+  proceedCheckout,
 ]);
 
 const adminRoutes = routeUtil.getRoutes([
@@ -45,6 +47,7 @@ const adminRoutes = routeUtil.getRoutes([
   getProducts,
   updateProductCart,
   removeProductCart,
+  proceedCheckout,
 ]);
 
 export default {

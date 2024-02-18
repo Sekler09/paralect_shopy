@@ -121,3 +121,15 @@ export function useRemoveProductFromCart() {
     },
   });
 }
+
+export function useProceedCheckout() {
+  const proceed = () => apiService.post('/account/cart/checkout');
+  interface ProceedResponse {
+    url: string;
+  }
+  return useMutation<ProceedResponse, unknown>(proceed, {
+    onSuccess: (data) => {
+      window.location.href = data.url;
+    },
+  });
+}

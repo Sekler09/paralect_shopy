@@ -10,6 +10,7 @@ const Cart: NextPage = () => {
   const { data: account } = accountApi.useGet();
   const { mutate: remove, isLoading: isRemoving } = accountApi.useRemoveProductFromCart();
   const { mutate: changeQuantity, isLoading: isChanging } = accountApi.useUpdateProductInCart();
+  const { mutate: proceed, isLoading: isProceeding } = accountApi.useProceedCheckout();
 
   const handleDecrement = (productId:string, value: number) => {
     if (value === 0) return;
@@ -102,7 +103,7 @@ const Cart: NextPage = () => {
               {totalPrice}
             </Text>
           </Group>
-          <Button>Proceed to Checkout</Button>
+          <Button onClick={() => proceed()} loading={isProceeding}>Proceed to Checkout</Button>
         </Stack>
         )}
       </Group>
