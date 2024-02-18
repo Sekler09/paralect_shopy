@@ -75,7 +75,7 @@ const Cart: NextPage = () => {
             <Link href={RoutePath.Cart} underline={false} type="router">
               <Text fw={600} fz={20} c="#201F22">My Cart</Text>
             </Link>
-            <Link href={RoutePath.Cart} underline={false} type="router">
+            <Link href={RoutePath.CartHistory} underline={false} type="router">
               <Text fw={600} fz={20} c="#A3A3A3">History</Text>
             </Link>
           </Group>

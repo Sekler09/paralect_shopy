@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 import { Product } from 'types';
 import { productSchema } from 'schemas';
 import { DATABASE_DOCUMENTS } from 'app-constants';

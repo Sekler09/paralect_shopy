@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from 'react-query';
 
-import { Product, User } from 'types';
+import { Product, Purchase, User } from 'types';
 
 import { apiService } from 'services';
 
@@ -132,4 +132,14 @@ export function useProceedCheckout() {
       window.location.href = data.url;
     },
   });
+}
+
+export function useGetPurchases() {
+  const getPurchases = () => apiService.get('/account/purchases');
+
+  interface GetPurchasesRes {
+    items: Purchase[],
+  }
+
+  return useQuery<GetPurchasesRes>(['purchases'], getPurchases);
 }

@@ -1,6 +1,8 @@
 import { stripeService } from 'services';
 import { AppKoaContext, AppRouter } from 'types';
 import config from 'config';
+import { userService } from 'resources/user';
+import purchaseService from 'resources/purchase/purchase.service';
 
 const webhookRouter = new AppRouter();
 
@@ -18,7 +20,17 @@ webhookRouter.post('/webhook', async (ctx: AppKoaContext) => {
   if (event.type === 'payment_intent.succeeded') {
     const paymentIntentSucceeded = event.data.object;
     const session = await stripeService.checkout.sessions.list({ payment_intent: paymentIntentSucceeded.id });
-    console.log(session.data[0].metadata);
+    const userId = session.data[0].metadata?.userId as string;
+
+    const user = await userService.findOne({ _id: userId });
+
+    await purchaseService.insertOne({
+      date: new Date(),
+      userId,
+      products: user?.cart.map(item => item.product),
+    });
+
+    await userService.clearCart(userId);
   }
   ctx.status = 200;
 });

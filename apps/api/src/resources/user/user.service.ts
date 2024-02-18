@@ -57,9 +57,17 @@ const removeProductFromCart = async (userId: string, productId: string) => {
   );
 };
 
+const clearCart = async (userId: string) => {
+  await service.atomic.updateOne(
+    { _id: userId }, 
+    { $set: { cart: [] } },
+  );
+};
+
 export default Object.assign(service, {
   updateLastRequest,
   getPublic,
   updateProductInCart,
   removeProductFromCart,
+  clearCart,
 });

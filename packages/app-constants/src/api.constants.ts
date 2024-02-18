@@ -2,6 +2,7 @@ export const DATABASE_DOCUMENTS = {
   USERS: 'users',
   TOKENS: 'tokens',
   PRODUCTS: 'products',
+  PURCHASES: 'purchases',
 };
 
 export const COOKIES = {
