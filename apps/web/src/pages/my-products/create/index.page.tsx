@@ -43,10 +43,10 @@ const CreateProduct: NextPage = () => {
             color: 'green',
           });
         },
-        onError: (e) => {
+        onError: () => {
           showNotification({
             title: 'Error',
-            message: JSON.stringify(e.data.errors),
+            message: JSON.stringify('Something went wrong!'),
             color: 'red',
           });
         } },
