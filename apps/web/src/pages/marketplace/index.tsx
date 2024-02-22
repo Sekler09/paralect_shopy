@@ -186,7 +186,7 @@ const Marketplace: NextPage = () => {
                   rightSection={<ArrowDown size={16} />}
                   leftSection={<IconArrowsSort size={20} />}
                   comboboxProps={{
-                    withinPortal: false,
+                    withinPortal: true,
                     transitionProps: {
                       transition: 'pop-bottom-right',
                       duration: 210,
