@@ -12,6 +12,7 @@ import {
   Flex,
   Pagination,
   NumberInput,
+  Skeleton,
 } from '@mantine/core';
 import { useDebouncedValue, useInputState } from '@mantine/hooks';
 import { IconArrowsSort, IconSearch, IconX } from '@tabler/icons-react';
@@ -95,7 +96,7 @@ const Marketplace: NextPage = () => {
       } } }));
   }, [debouncedFrom, debouncedTo]);
 
-  const { data } = productApi.useList(params);
+  const { data, isLoading } = productApi.useList(params);
   const { data: account } = accountApi.useGet();
 
   return (
@@ -169,34 +170,43 @@ const Marketplace: NextPage = () => {
               }}
             />
 
-            <Group justify="space-between">
-              <Text fw={700} fz={16}>
-                {data?.count || 0}
-                {' '}
-                results
-              </Text>
-              <Select
-                w={200}
-                size="md"
-                data={selectOptions}
-                value={sortBy}
-                onChange={handleSort}
-                rightSection={<ArrowDown size={16} />}
-                leftSection={<IconArrowsSort size={20} />}
-                comboboxProps={{
-                  withinPortal: false,
-                  transitionProps: {
-                    transition: 'pop-bottom-right',
-                    duration: 210,
-                    timingFunction: 'ease-out',
-                  },
-                }}
-                styles={{
-                  input: { border: 'none', background: 'transparent', height: '21px', minHeight: '21px' },
-                  wrapper: { height: '21px' },
-                }}
-              />
-            </Group>
+            <Skeleton visible={isLoading}>
+              <Group justify="space-between">
+                <Text fw={700} fz={16}>
+                  {data?.count || 0}
+                  {' '}
+                  results
+                </Text>
+                <Select
+                  w={200}
+                  size="md"
+                  data={selectOptions}
+                  value={sortBy}
+                  onChange={handleSort}
+                  rightSection={<ArrowDown size={16} />}
+                  leftSection={<IconArrowsSort size={20} />}
+                  comboboxProps={{
+                    withinPortal: false,
+                    transitionProps: {
+                      transition: 'pop-bottom-right',
+                      duration: 210,
+                      timingFunction: 'ease-out',
+                    },
+                  }}
+                  styles={{
+                    input: { border: 'none', background: 'transparent', height: '21px', minHeight: '21px' },
+                    wrapper: { height: '21px' },
+                  }}
+                />
+              </Group>
+            </Skeleton>
+
+            {isLoading && (
+              <Group gap={20}>
+                {[1, 2, 3, 4, 5, 6]
+                  .map((num) => <Skeleton height={370} width={320} radius={12} key={num} />)}
+              </Group>
+            )}
 
             {data?.items.length ? (
               <Group gap={20}>
