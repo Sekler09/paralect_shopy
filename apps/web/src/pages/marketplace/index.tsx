@@ -96,7 +96,7 @@ const Marketplace: NextPage = () => {
       } } }));
   }, [debouncedFrom, debouncedTo]);
 
-  const { data, isLoading } = productApi.useList(params);
+  const { data, isLoading, isFetching } = productApi.useList(params);
   const { data: account } = accountApi.useGet();
 
   return (
@@ -170,7 +170,7 @@ const Marketplace: NextPage = () => {
               }}
             />
 
-            <Skeleton visible={isLoading}>
+            <Skeleton visible={isLoading || isFetching}>
               <Group justify="space-between">
                 <Text fw={700} fz={16}>
                   {data?.count || 0}
@@ -201,7 +201,7 @@ const Marketplace: NextPage = () => {
               </Group>
             </Skeleton>
 
-            {isLoading && (
+            {(isLoading || isFetching) && (
               <Group gap={20}>
                 {[1, 2, 3, 4, 5, 6]
                   .map((num) => <Skeleton height={370} width={320} radius={12} key={num} />)}
