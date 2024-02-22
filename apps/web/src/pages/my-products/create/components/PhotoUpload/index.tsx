@@ -25,6 +25,7 @@ const PhotoUpload: FC<PhotoUploadProps> = ({ onFileChange }) => {
         width={180}
         height={180}
         className={classes.photoImg}
+        placeholder="blur"
       />
       <FileInput accept="image/png,image/jpeg,image/jpg" style={{ display: 'none' }} value={value} onChange={handleFileChange} ref={ref} />
       <Button onClick={() => ref.current?.click()} className={classes.uploadBtn}>

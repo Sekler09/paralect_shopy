@@ -30,7 +30,7 @@ const CreateProduct: NextPage = () => {
     resolver: zodResolver(schema),
   });
 
-  const { mutate: createProduct } = productApi.useCreate();
+  const { mutate: createProduct, isLoading } = productApi.useCreate();
 
   const onSubmit = (data: CreateParams) => {
     createProduct(
@@ -88,7 +88,7 @@ const CreateProduct: NextPage = () => {
             />
             <Button
               type="submit"
-              loading={false}
+              loading={isLoading}
               style={{ alignSelf: 'flex-end' }}
             >
               Upload Product
