@@ -208,7 +208,7 @@ const Marketplace: NextPage = () => {
               </Group>
             )}
 
-            {data?.items.length ? (
+            {!(isLoading || isFetching) && data?.items.length ? (
               <Group gap={20}>
                 {data.items.map((product) => (
                   <ProductCard
