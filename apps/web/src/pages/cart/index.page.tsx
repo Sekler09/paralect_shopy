@@ -110,7 +110,7 @@ const Cart: NextPage = () => {
       {!account?.cart.length && (
         <Center mt={40}>
           <Stack gap={20}>
-            <Image src="images/balloon.png" w={206} mx="auto" />
+            <Image src="../images/balloon.png" w={206} mx="auto" />
             <Title order={1} fw={700} fz={20}>Oops, there&apos;s nothing here yet!</Title>
             <Text fz={14} ta="center" c="#767676">
               You haven&apos;t made any purchases yet.
